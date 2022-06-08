@@ -5,18 +5,18 @@ import App from '../components/App';
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 const IndexPage: React.FC = () => {
-    return (
-      <main>
-        <App />
-        {/* <section>
+  return (
+    <main>
+      <App />
+      {/* <section>
           <div className="hero level fullscreen">
             <div className="level-item w-100">
               <App />
             </div>
           </div>
         </section> */}
-      </main>
-    );
-  };
+    </main>
+  );
+};
 
-  export default IndexPage;
+export default IndexPage;
