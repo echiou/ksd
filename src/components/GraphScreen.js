@@ -40,8 +40,8 @@ export default function GraphScreen({ token }) {
                 console.log(artist.name);
             })
 
-            // Top 50 tracks
-            await axios.get("https://api.spotify.com/v1/me/top/tracks?limit=50", { headers }).then((response) => {
+            // Top 10 tracks
+            await axios.get("https://api.spotify.com/v1/me/top/tracks?limit=10", { headers }).then((response) => {
                 topTracks = response.data.items;
 
             })
@@ -64,8 +64,8 @@ export default function GraphScreen({ token }) {
             </div>
         )
     return (
-            <body className="GraphScreen">
+            <div className="GraphScreen">
                 <p>see u soon</p>
-            </body>
+            </div>
     );
 };

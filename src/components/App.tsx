@@ -3,26 +3,29 @@ import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import GraphScreen from "./GraphScreen";
 
 const App = () => {
-  let token = "";
+  const [token, setToken] = useState("");
 
-  if (typeof window !== "undefined") {
-    var mToken = window.location.hash
-      .substring(1)
-      .split("&")
-      .reduce(function(initial, item) {
-        if (item) {
-          var parts = item.split("=");
-          initial[parts[0]] = decodeURIComponent(parts[1]);
-        }
-        return initial;
-      }, {})['access_token'];
-    if (mToken) {
-      token = mToken;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      var mToken = window.location.hash
+        .substring(1)
+        .split("&")
+        .reduce(function(initial, item) {
+          if (item) {
+            var parts = item.split("=");
+            initial[parts[0]] = decodeURIComponent(parts[1]);
+          }
+          return initial;
+        }, {})['access_token'];
+      if (mToken) {
+        setToken(mToken);
+      }
     }
-  }
+    console.log("hey");
+  }, []);
 
   return (
-    <body className="App-body">
+    <div className="App-body">
       {!token && (
         <a
           className="btn btn--loginApp-link"
@@ -36,7 +39,7 @@ const App = () => {
       {token && (
         <GraphScreen token={token} />
       )}
-    </body>
+    </div>
   );
 
 }
