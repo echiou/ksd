@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { authEndpoint, clientId, redirectUri, scopes } from "./config_example";
-import hash from "./hash";
 import GraphScreen from "./GraphScreen";
 
 const App = () => {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    var mToken = hash.access_token;
+    var mToken = window.location.hash
+      .substring(1)
+      .split("&")
+      .reduce(function(initial, item) {
+        if (item) {
+          var parts = item.split("=");
+          initial[parts[0]] = decodeURIComponent(parts[1]);
+        }
+        return initial;
+      }, {})['access_token'];
     if (mToken) {
       setToken(mToken);
     }
