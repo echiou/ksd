@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { authEndpoint, clientId, redirectUri, scopes } from "./config_example";
+import { authEndpoint, clientId, redirectUri, scopes } from "./config";
 import GraphScreen from "./GraphScreen";
 
 const App = () => {
