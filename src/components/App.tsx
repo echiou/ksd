@@ -4,14 +4,9 @@ import GraphScreen from './GraphScreen';
 
 const App = () => {
   const [token, setToken] = useState('');
-  const [isClient, setClient] = useState(false);
-  const key = isClient ? 'client' : 'server';
 
-  useEffect(() => {
-    setClient(true);
-  }, []);
-
-  useEffect(() => {
+  const tokenInterval = setInterval(() => {
+    console.log("heh");
     var mToken = window.location.hash
       .substring(1)
       .split('&')
@@ -23,14 +18,13 @@ const App = () => {
         return initial;
       }, {})['access_token'];
     if (mToken) {
+      clearInterval(tokenInterval)
       setToken(mToken);
     }
-    console.log('hey');
-  }, []);
+  }, 500);
 
   return (
     <div className="App-body">
-      <p>{key}</p>
       {!token && (
         <a
           className="btn btn--loginApp-link"
