@@ -19,7 +19,6 @@ const App = () => {
     if (mToken) {
       setToken(mToken);
     }
-    console.log('hey');
   }, []);
 
   return (
