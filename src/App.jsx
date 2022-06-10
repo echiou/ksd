@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { authEndpoint, clientId, redirectUri, scopes } from './config';
-import GraphScreen from './GraphScreen';
+import { authEndpoint, clientId, redirectUri, scopes } from './config/config';
+import GraphScreen from './components/GraphScreen';
 
 const App = () => {
   const [token, setToken] = useState('');
