@@ -1,5 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
+const TopArtists = ({lst}) => {
+  return (
+    <ul>
+      {lst.map(item => (
+        <li key={item.name}>{item.name}</li>
+      ))}
+    </ul>
+  )
+}
+
+const TopTracks = ({lst}) => {
+  return (
+    <ul>
+      {lst.map(item => (
+        <li key={item.name}>{item.name}</li>
+      ))}
+    </ul>
+  )
+}
+
 export default function GraphScreen({ token }) {
   const axios = require('axios');
   const [isMounted, setIsMounted] = useState(false);
@@ -40,16 +60,8 @@ export default function GraphScreen({ token }) {
     );
   return (
     <div className="GraphScreen">
-      <ul>
-        {topArtists.map(item => (
-          <li key={item.name}>{item.name}</li>
-        ))}
-      </ul>
-      <ul>
-        {topTracks.map(item => (
-          <li key={item.name}>{item.name}</li>
-        ))}
-      </ul>
+      <TopArtists lst={topArtists} />
+      <TopArtists lst={topTracks} />
     </div>
   );
 }
