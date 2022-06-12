@@ -1,23 +1,60 @@
 import React, { useState, useEffect } from 'react';
 
+const blue = {
+  color: 'blue',
+};
+
 const TopArtists = ({lst}) => {
+  const ArtistsItems = () => lst.map((item, index) => {
+    // TODO: Replace this with an actual class
+    const style = item.name == 'keshi' ? blue : {};
+    return (
+      <li style={style} key={item.name}>{item.name}</li>
+    )
+  });
+
   return (
     <ul>
-      {lst.map(item => (
-        <li key={item.name}>{item.name}</li>
-      ))}
+      <ArtistsItems />
     </ul>
-  )
+  );
 }
 
 const TopTracks = ({lst}) => {
+  let numKSongs = 0;
+
+  for (let i = 0; i < lst.length; i++) {
+    for (let j = 0; j < lst[i].artists.length; j++) {
+      if (lst[i].artists[j].name == 'keshi') {
+        numKSongs++;
+      }
+    }
+  }
+
+  const TracksItems = () => lst.map((item, index) => {
+    let style = {};
+
+    for (let i = 0; i < item.artists.length; i++) {
+      if (item.artists[i].name == 'keshi') {
+        numKSongs++;
+        style = blue;
+        break;
+      }
+    }
+
+    return (
+      <li style={style} key={item.name}>{item.name}</li>
+    )
+  });
+
   return (
-    <ul>
-      {lst.map(item => (
-        <li key={item.name}>{item.name}</li>
-      ))}
-    </ul>
-  )
+    <div>
+      <ul>
+        <TracksItems />
+      </ul>
+      <p>{numKSongs} of your top 10 songs have keshi on them</p>
+    </div>
+  );
 }
 
 export default function GraphScreen({ token }) {
@@ -61,7 +98,7 @@ export default function GraphScreen({ token }) {
   return (
     <div className="GraphScreen">
       <TopArtists lst={topArtists} />
-      <TopArtists lst={topTracks} />
+      <TopTracks lst={topTracks} />
     </div>
   );
 }
