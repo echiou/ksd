@@ -1,22 +1,22 @@
+import 'cirrus-ui';
 import React, { useState, useEffect } from 'react';
-
-const blue = {
-  color: 'blue',
-};
 
 const TopArtists = ({lst}) => {
   const ArtistsItems = () => lst.map((item, index) => {
     // TODO: Replace this with an actual class
-    const style = item.name == 'keshi' ? blue : {};
+    const classes = item.name == 'keshi' ? 'text-red-800' : '';
     return (
-      <li style={style} key={item.name}>{item.name}</li>
+      <li className={classes} key={item.name}>{item.name}</li>
     )
   });
 
   return (
-    <ul>
-      <ArtistsItems />
-    </ul>
+    <div>
+      <p className='title'>Top Artists</p>
+      <ol>
+        <ArtistsItems />
+      </ol>
+    </div>
   );
 }
 
@@ -32,26 +32,27 @@ const TopTracks = ({lst}) => {
   }
 
   const TracksItems = () => lst.map((item, index) => {
-    let style = {};
+    let classes = "";
 
     for (let i = 0; i < item.artists.length; i++) {
       if (item.artists[i].name == 'keshi') {
         numKSongs++;
-        style = blue;
+        classes = 'text-red-800';
         break;
       }
     }
 
     return (
-      <li style={style} key={item.name}>{item.name}</li>
+      <li className={classes} key={item.name}>{item.name}</li>
     )
   });
 
   return (
     <div>
-      <ul>
+      <p className='title'>Top Tracks</p>
+      <ol>
         <TracksItems />
-      </ul>
+      </ol>
       <p>{numKSongs} of your top 10 songs have keshi on them</p>
     </div>
   );
